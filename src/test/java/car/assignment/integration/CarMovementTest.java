@@ -29,7 +29,7 @@ public class CarMovementTest {
                         .x(5)
                         .y(5)
                         .build())
-                .movementCommands(Arrays.asList(RIGHT, FORWARD, LEFT, FORWARD, RIGHT, FORWARD, LEFT, FORWARD))
+                .movementCommands(Arrays.asList(R, F, L, F, R, F, L, F))
                 .build();
 
         ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
@@ -49,7 +49,7 @@ public class CarMovementTest {
                         .x(6)
                         .y(6)
                         .build())
-                .movementCommands(Arrays.asList(FORWARD, FORWARD, LEFT, FORWARD, FORWARD, LEFT, FORWARD, FORWARD, LEFT, FORWARD, FORWARD))
+                .movementCommands(Arrays.asList(F, F, L, F, F, L, F, F, L, F, F))
                 .build();
 
         ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
@@ -69,7 +69,7 @@ public class CarMovementTest {
                         .x(6)
                         .y(6)
                         .build())
-                .movementCommands(Arrays.asList(FORWARD, LEFT, FORWARD, LEFT, FORWARD, FORWARD, RIGHT, FORWARD, FORWARD, FORWARD))
+                .movementCommands(Arrays.asList(F, L, F, L, F, F, R, F, F, F))
                 .build();
 
         ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
