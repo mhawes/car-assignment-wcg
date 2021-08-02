@@ -17,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CarMovementTest {
+    public static final String PATH_CAR_NEW_POSITION = "/car/new/position";
     @Autowired
     private TestRestTemplate template;
 
@@ -31,7 +32,7 @@ public class CarMovementTest {
                 .movementCommands(Arrays.asList(RIGHT, FORWARD, LEFT, FORWARD, RIGHT, FORWARD, LEFT, FORWARD))
                 .build();
 
-        ResponseEntity<Coordinate> response = template.postForEntity("/car/new/position", request, Coordinate.class);
+        ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         Coordinate responseCoordinate = response.getBody();
@@ -51,7 +52,7 @@ public class CarMovementTest {
                 .movementCommands(Arrays.asList(FORWARD, FORWARD, LEFT, FORWARD, FORWARD, LEFT, FORWARD, FORWARD, LEFT, FORWARD, FORWARD))
                 .build();
 
-        ResponseEntity<Coordinate> response = template.postForEntity("/car/new/position", request, Coordinate.class);
+        ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         Coordinate responseCoordinate = response.getBody();
@@ -71,7 +72,7 @@ public class CarMovementTest {
                 .movementCommands(Arrays.asList(FORWARD, LEFT, FORWARD, LEFT, FORWARD, FORWARD, RIGHT, FORWARD, FORWARD, FORWARD))
                 .build();
 
-        ResponseEntity<Coordinate> response = template.postForEntity("/car/new/position", request, Coordinate.class);
+        ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         Coordinate responseCoordinate = response.getBody();
@@ -86,7 +87,7 @@ public class CarMovementTest {
                 .initialCoordinate(Coordinate.builder().build())
                 .build();
 
-        ResponseEntity<Coordinate> response = template.postForEntity("/car/new/position", request, Coordinate.class);
+        ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
@@ -101,7 +102,7 @@ public class CarMovementTest {
                 .movementCommands(Collections.emptyList())
                 .build();
 
-        ResponseEntity<Coordinate> response = template.postForEntity("/car/new/position", request, Coordinate.class);
+        ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
@@ -116,7 +117,7 @@ public class CarMovementTest {
                 .movementCommands(Collections.emptyList())
                 .build();
 
-        ResponseEntity<Coordinate> response = template.postForEntity("/car/new/position", request, Coordinate.class);
+        ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
@@ -131,7 +132,7 @@ public class CarMovementTest {
                 .movementCommands(Collections.emptyList())
                 .build();
 
-        ResponseEntity<Coordinate> response = template.postForEntity("/car/new/position", request, Coordinate.class);
+        ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
@@ -146,7 +147,7 @@ public class CarMovementTest {
                 .movementCommands(Collections.emptyList())
                 .build();
 
-        ResponseEntity<Coordinate> response = template.postForEntity("/car/new/position", request, Coordinate.class);
+        ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
