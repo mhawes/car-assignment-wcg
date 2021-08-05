@@ -25,10 +25,8 @@ public class CarMovementTest {
     public void testCaseOne() {
         //5,5:RFLFRFLF
         final NewPositionRequest request = NewPositionRequest.builder()
-                .initialCoordinate(Coordinate.builder()
-                        .x(5)
-                        .y(5)
-                        .build())
+                .initialX(5)
+                .initialY(5)
                 .movementCommands(Arrays.asList(R, F, L, F, R, F, L, F))
                 .build();
 
@@ -45,10 +43,8 @@ public class CarMovementTest {
     public void testCaseTwo() {
         //6,6:FFLFFLFFLFF
         final NewPositionRequest request = NewPositionRequest.builder()
-                .initialCoordinate(Coordinate.builder()
-                        .x(6)
-                        .y(6)
-                        .build())
+                .initialX(6)
+                .initialY(6)
                 .movementCommands(Arrays.asList(F, F, L, F, F, L, F, F, L, F, F))
                 .build();
 
@@ -65,10 +61,8 @@ public class CarMovementTest {
     public void testCaseThree() {
         //5,5:FLFLFFRFFF
         final NewPositionRequest request = NewPositionRequest.builder()
-                .initialCoordinate(Coordinate.builder()
-                        .x(6)
-                        .y(6)
-                        .build())
+                .initialX(6)
+                .initialY(6)
                 .movementCommands(Arrays.asList(F, L, F, L, F, F, R, F, F, F))
                 .build();
 
@@ -83,9 +77,7 @@ public class CarMovementTest {
 
     @Test
     public void shouldReturnBadRequestDueToMissingMandatoryFields() {
-        final NewPositionRequest request = NewPositionRequest.builder()
-                .initialCoordinate(Coordinate.builder().build())
-                .build();
+        final NewPositionRequest request = NewPositionRequest.builder().build();
 
         ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
 
@@ -95,10 +87,8 @@ public class CarMovementTest {
     @Test
     public void shouldReturnOkWithValidCoordinateRangeMax() {
         final NewPositionRequest request = NewPositionRequest.builder()
-                .initialCoordinate(Coordinate.builder()
-                        .x(15)
-                        .y(15)
-                        .build())
+                .initialX(15)
+                .initialY(15)
                 .movementCommands(Collections.emptyList())
                 .build();
 
@@ -110,10 +100,8 @@ public class CarMovementTest {
     @Test
     public void shouldReturnBadRequestDueToInvalidCoordinateRangeMax() {
         final NewPositionRequest request = NewPositionRequest.builder()
-                .initialCoordinate(Coordinate.builder()
-                        .x(16)
-                        .y(16)
-                        .build())
+                .initialX(16)
+                .initialY(16)
                 .movementCommands(Collections.emptyList())
                 .build();
 
@@ -125,10 +113,8 @@ public class CarMovementTest {
     @Test
     public void shouldReturnBadRequestDueToInvalidCoordinateRangeMin() {
         final NewPositionRequest request = NewPositionRequest.builder()
-                .initialCoordinate(Coordinate.builder()
-                        .x(0)
-                        .y(0)
-                        .build())
+                .initialX(0)
+                .initialY(0)
                 .movementCommands(Collections.emptyList())
                 .build();
 
@@ -140,10 +126,8 @@ public class CarMovementTest {
     @Test
     public void shouldReturnOkWithValidCoordinateRangeMin() {
         final NewPositionRequest request = NewPositionRequest.builder()
-                .initialCoordinate(Coordinate.builder()
-                        .x(1)
-                        .y(1)
-                        .build())
+                .initialX(1)
+                .initialY(1)
                 .movementCommands(Collections.emptyList())
                 .build();
 

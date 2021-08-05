@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -12,7 +15,16 @@ import java.util.List;
 @AllArgsConstructor
 public class NewPositionRequest {
     @NotNull
-    private Coordinate initialCoordinate;
+    @Min(1)
+    @Max(15)
+    private Integer initialX;
+
     @NotNull
+    @Min(1)
+    @Max(15)
+    private Integer initialY;
+
+    @NotNull
+    @Valid
     private List<MovementCommand> movementCommands;
 }

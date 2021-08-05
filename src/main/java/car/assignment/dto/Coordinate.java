@@ -12,13 +12,6 @@ import javax.validation.constraints.NotNull;
 @Getter
 @AllArgsConstructor
 public class Coordinate {
-    @NotNull
-    @Min(1)
-    @Max(15)
     private Integer x;
-
-    @NotNull
-    @Min(1)
-    @Max(15)
     private Integer y;
 }
