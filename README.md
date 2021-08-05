@@ -4,6 +4,8 @@ Martin Hawes-Lambourne `hawesmartin@googlemail.com`
 
 ### To build and run:
 
+Prerequisite: to build and run you need to have java JDK 1.8 or later. 
+
 1. Clone this repository on your machine using git: `git clone https://github.com/mhawes/car-assignment-wcg.git`
 2. Open a terminal and change directory to the root of the project (the same one as this README)
 3. Run the following command to build and execute the tests: `gradlew build test`
