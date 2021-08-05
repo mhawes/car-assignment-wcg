@@ -1,5 +1,6 @@
 package car.assignment.controller;
 
+import car.assignment.converter.StringToNewPositionRequestConverter;
 import car.assignment.dto.Coordinate;
 import car.assignment.dto.NewPositionRequest;
 import car.assignment.service.PositionService;
@@ -18,6 +19,8 @@ public class CarMovementController {
 
     @Autowired
     private PositionService positionService;
+    @Autowired
+    private StringToNewPositionRequestConverter stringToNewPositionRequestConverter;
 
     @PostMapping("/car/new/position")
     public Coordinate newPosition(@Valid @RequestBody NewPositionRequest newPositionRequest) {
@@ -26,6 +29,7 @@ public class CarMovementController {
 
     @PostMapping("/car/new/position/string")
     public String newPositionString(@RequestParam String newPositionString) {
-        return null;
+        return newPosition(stringToNewPositionRequestConverter.convert(newPositionString))
+                .toString();
     }
 }

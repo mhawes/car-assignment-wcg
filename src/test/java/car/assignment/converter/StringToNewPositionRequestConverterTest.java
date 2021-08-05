@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import static car.assignment.dto.MovementCommand.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,8 +28,19 @@ class StringToNewPositionRequestConverterTest {
     }
 
     @Test
+    void shouldConvertIfNoMovementsProvided() {
+        NewPositionRequest result = converter.convert("5,6:");
+
+        assertThat(result).isNotNull();
+        assertThat(result.getInitialX()).isEqualTo(5);
+        assertThat(result.getInitialY()).isEqualTo(6);
+        assertThat(result.getMovementCommands()).isEmpty();
+    }
+
+    @Test
     void shouldFailToConvertIfStringIsInvalid() {
-        Assertions.assertThrows(HttpClientErrorException.BadRequest.class,
-                () -> converter.convert("5,6,7:FLRO"));
+        Assertions.assertThrows(ResponseStatusException.class,
+                () -> converter.convert("5,6,7:FLRO"),
+                "Invalid request string");
     }
 }

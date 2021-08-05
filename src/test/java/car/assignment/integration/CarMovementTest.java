@@ -168,6 +168,30 @@ public class CarMovementTest {
     }
 
     @Test
+    public void shouldRejectRequestAsXIsOutsideAcceptedRange() {
+        URI uri = UriComponentsBuilder
+                .fromPath(PATH_CAR_NEW_POSITION_STRING)
+                .queryParam("newPositionString", "16,6:FF")
+                .build()
+                .toUri();
+        ResponseEntity<String> response = template.postForEntity(uri, null, String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+
+    @Test
+    public void shouldRejectRequestAsYIsOutsideAcceptedRange() {
+        URI uri = UriComponentsBuilder
+                .fromPath(PATH_CAR_NEW_POSITION_STRING)
+                .queryParam("newPositionString", "6,16:FF")
+                .build()
+                .toUri();
+        ResponseEntity<String> response = template.postForEntity(uri, null, String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+
+    @Test
     public void shouldRejectRequestAsStringParameterWhenEmptyString() {
         URI uri = UriComponentsBuilder
                 .fromPath(PATH_CAR_NEW_POSITION_STRING)
