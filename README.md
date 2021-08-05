@@ -4,9 +4,10 @@ Martin Hawes-Lambourne `hawesmartin@googlemail.com`
 
 ### To build and run:
 
-1. Open a terminal and change directory to the root of the project (the same one as this README)
-2. Run the following command to build and execute the tests: `gradlew build test`
-3. Run the following command to start the server: `gradlew bootrun`
+1. Clone this repository on your machine using git: `git clone https://github.com/mhawes/car-assignment-wcg.git`
+2. Open a terminal and change directory to the root of the project (the same one as this README)
+3. Run the following command to build and execute the tests: `gradlew build test`
+4. Run the following command to start the server: `gradlew bootrun`
 
 ### Usage:
 
