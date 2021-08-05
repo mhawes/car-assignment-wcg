@@ -79,16 +79,16 @@ public class PositionServiceImpl implements PositionService {
         int newY = coordinate.getY();
         switch (direction) {
             case NORTH:
-                newY += 1;
-                break;
-            case EAST:
                 newX += 1;
                 break;
+            case EAST:
+                newY += 1;
+                break;
             case SOUTH:
-                newY -= 1;
+                newX -= 1;
                 break;
             case WEST:
-                newX -= 1;
+                newY -= 1;
                 break;
         }
         return Coordinate.builder()

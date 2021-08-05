@@ -72,8 +72,8 @@ class PositionServiceImplTest {
 
         Coordinate result = service.moveToNewPosition(newPositionRequest);
 
-        assertThat(result.getX()).isEqualTo(5);
-        assertThat(result.getY()).isEqualTo(6);
+        assertThat(result.getX()).isEqualTo(6);
+        assertThat(result.getY()).isEqualTo(5);
     }
 
     @Test
@@ -86,8 +86,8 @@ class PositionServiceImplTest {
 
         Coordinate result = service.moveToNewPosition(newPositionRequest);
 
-        assertThat(result.getX()).isEqualTo(5);
-        assertThat(result.getY()).isEqualTo(4);
+        assertThat(result.getX()).isEqualTo(4);
+        assertThat(result.getY()).isEqualTo(5);
     }
 
     @Test
@@ -100,8 +100,8 @@ class PositionServiceImplTest {
 
         Coordinate result = service.moveToNewPosition(newPositionRequest);
 
-        assertThat(result.getX()).isEqualTo(4);
-        assertThat(result.getY()).isEqualTo(5);
+        assertThat(result.getX()).isEqualTo(5);
+        assertThat(result.getY()).isEqualTo(4);
     }
 
     @Test
@@ -114,8 +114,8 @@ class PositionServiceImplTest {
 
         Coordinate result = service.moveToNewPosition(newPositionRequest);
 
-        assertThat(result.getX()).isEqualTo(6);
-        assertThat(result.getY()).isEqualTo(5);
+        assertThat(result.getX()).isEqualTo(5);
+        assertThat(result.getY()).isEqualTo(6);
     }
 
     @Test
@@ -156,7 +156,7 @@ class PositionServiceImplTest {
 
         Coordinate result = service.moveToNewPosition(newPositionRequest);
 
-        assertThat(result.getX()).isEqualTo(14);
-        assertThat(result.getY()).isEqualTo(15);
+        assertThat(result.getX()).isEqualTo(15);
+        assertThat(result.getY()).isEqualTo(14);
     }
 }

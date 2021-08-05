@@ -61,8 +61,8 @@ public class CarMovementTest {
     public void testCaseThree() {
         //5,5:FLFLFFRFFF
         final NewPositionRequest request = NewPositionRequest.builder()
-                .initialX(6)
-                .initialY(6)
+                .initialX(5)
+                .initialY(5)
                 .movementCommands(Arrays.asList(F, L, F, L, F, F, R, F, F, F))
                 .build();
 
