@@ -8,7 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -18,6 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CarMovementTest {
     public static final String PATH_CAR_NEW_POSITION = "/car/new/position";
+    public static final String PATH_CAR_NEW_POSITION_STRING = "/car/new/position/string";
+
     @Autowired
     private TestRestTemplate template;
 
@@ -134,5 +138,56 @@ public class CarMovementTest {
         ResponseEntity<Coordinate> response = template.postForEntity(PATH_CAR_NEW_POSITION, request, Coordinate.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+
+    @Test
+    public void shouldAcceptRequestAsStringParameter() {
+        URI uri = UriComponentsBuilder
+                .fromPath(PATH_CAR_NEW_POSITION_STRING)
+                .queryParam("newPositionString", "6,6:FFLFFLFFLFF")
+                .build()
+                .toUri();
+        ResponseEntity<String> response = template.postForEntity(uri, null, String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        String responseCoordinate = response.getBody();
+        assertThat(responseCoordinate).isNotNull();
+        assertThat(responseCoordinate).isEqualTo("6,6");
+    }
+
+    @Test
+    public void shouldRejectRequestAsStringParameterWhenNotValid() {
+        URI uri = UriComponentsBuilder
+                .fromPath(PATH_CAR_NEW_POSITION_STRING)
+                .queryParam("newPositionString", "6,6,5:FFABC")
+                .build()
+                .toUri();
+        ResponseEntity<String> response = template.postForEntity(uri, null, String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+
+    @Test
+    public void shouldRejectRequestAsStringParameterWhenEmptyString() {
+        URI uri = UriComponentsBuilder
+                .fromPath(PATH_CAR_NEW_POSITION_STRING)
+                .queryParam("newPositionString", "")
+                .build()
+                .toUri();
+        ResponseEntity<String> response = template.postForEntity(uri, null, String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+
+    @Test
+    public void shouldRejectRequestAsStringParameterWhenBlankString() {
+        URI uri = UriComponentsBuilder
+                .fromPath(PATH_CAR_NEW_POSITION_STRING)
+                .queryParam("newPositionString", " ")
+                .build()
+                .toUri();
+        ResponseEntity<String> response = template.postForEntity(uri, null, String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
 }
