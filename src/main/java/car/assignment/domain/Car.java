@@ -1,5 +1,6 @@
 package car.assignment.domain;
 
+import car.assignment.dto.Coordinate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +11,6 @@ import javax.swing.text.Position;
 @Getter
 @AllArgsConstructor
 public class Car {
-    private Position position;
+    private Coordinate coordinate;
     private Direction direction;
 }

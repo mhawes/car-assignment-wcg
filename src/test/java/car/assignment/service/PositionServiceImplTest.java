@@ -156,7 +156,7 @@ class PositionServiceImplTest {
 
         Coordinate result = service.moveToNewPosition(newPositionRequest);
 
-        assertThat(result.getX()).isEqualTo(15);
-        assertThat(result.getY()).isEqualTo(14);
+        assertThat(result.getX()).isEqualTo(14);
+        assertThat(result.getY()).isEqualTo(15);
     }
 }
